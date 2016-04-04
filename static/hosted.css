@@ -1,0 +1,54 @@
+body, html {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: #666;
+    background-color: #fff;
+}
+
+*, body, html {
+    margin: 0px;
+    padding: 0px;
+}
+
+table, tr, th {
+    border-color: #777 !important;
+}
+
+table {
+    border: none !important;
+    width: 100% !important;
+}
+
+thead th {
+    font-weight: bold;
+    background-color: #f5f5f5;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: #f5f5f5;
+}
+
+tbody tr:hover td {
+    background-color: #fafafa;
+}
+
+.dataTables_info {
+    color: #777 !important;
+}
+
+.twitch-connect {
+    margin: 12px 0px 12px 0px;
+    cursor: pointer;
+    display: none;
+}
+
+.info {
+    width: 100%;
+    background-color: #202025;
+    color: #eee;
+    margin-top: 0px;
+    padding: 12px;
+}
+
+.info {
+    text-shadow: 1px 1px #000;
+}
