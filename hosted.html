@@ -6,15 +6,17 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
         <script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
-        <title>Who Hosted? | Disconnected</title>
+        <title>Who Hosted?</title>
     </head>
     <body>
         <div id="main-info" class="info">
             <h1>Who Hosted?</h1>
             <p>Leave this page open while you stream to keep track of everyone who hosts your channel!</p>
+            <p id="status">&#x2718; not connected</p>
             <img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" class="twitch-connect" href="#" />
         </div>
         <table id="records"></table>
+        <a id="clear-link" href="#">[x] clear records</a>
     </body>
     <script type="text/javascript" src="static/hosted.js"></script>
 </html>

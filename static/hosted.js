@@ -18,7 +18,7 @@ Twitch.init({clientId: '3jfmlnr9zm42l7k34aah95xgc7ugtyj'}, function(error, statu
 
 $('.twitch-connect').click(function() {
     Twitch.login({
-        redirect_uri: 'http://localhost:8888',
+        redirect_uri: 'http://localhost:8888/whohosted',
         scope: ['chat_login']
     });
 });
@@ -30,9 +30,14 @@ function getStoredHosts() {
     while (data != null) {
         var record = JSON.parse(data);
         records.push(record);
-        data = localStorage.getItem('table:hosts:' + storageIndex++);
+        data = localStorage.getItem('table:hosts:' + (++storageIndex));
     }
     return records;
+}
+
+function clear_records() {
+    localStorage.clear();
+    table.clear().draw();
 }
 
 function connect(nick, token) {
@@ -46,6 +51,7 @@ function connect(nick, token) {
         ws.send('PASS ' + auth);
         ws.send('NICK ' + nick);
         ws.send('JOIN #' + channel);
+        setStatusConnected();
     };
 
     ws.addEventListener('message', function(data) {
@@ -68,6 +74,22 @@ function connect(nick, token) {
             }
         }
     });
+    
+    ws.addEventListener('error', function() {
+        setStatusDisconnected();
+    });
+    
+    ws.addEventListener('close', function() {
+        setStatusDisconnected();
+    });
+}
+
+function setStatusConnected() {
+    document.getElementById('status').innerHTML = '&#x2714; connected';
+}
+
+function setStatusDisconnected() {
+    document.getElementById('status').innerHTML = '&#x2718; not connected';
 }
 
 var table;
@@ -88,6 +110,8 @@ $(document).ready(function() {
             { title: "Viewers" }
         ]
     } );
+    
+    $('#clear-link').click(clear_records);
 } );
 
 function addRow(data) {

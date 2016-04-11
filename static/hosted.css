@@ -52,3 +52,7 @@ tbody tr:hover td {
 .info {
     text-shadow: 1px 1px #000;
 }
+
+#clear-link {
+    margin: 0 auto;
+}

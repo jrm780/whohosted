@@ -1,8 +1,8 @@
 import tornado.ioloop
-import tornado.web
+import tornado.web as web
 import os
 
-class MainHandler(tornado.web.RequestHandler):
+class MainHandler(web.RequestHandler):
     def get(self):
         self.render('hosted.html')
 
@@ -12,10 +12,13 @@ def make_app():
         'static_path': os.path.join(os.path.dirname(__file__), 'static')
     }
     
-    handlers = [
-        (r'/', MainHandler),
+    main_handlers = [
+        (r'/.*', MainHandler),
+        (r'.*', web.RedirectHandler, {'url': '/'})
     ]
-    return tornado.web.Application(handlers, **settings)
+    
+    app = web.Application(main_handlers, **settings)
+    return app
 
 if __name__ == "__main__":
     app = make_app()
